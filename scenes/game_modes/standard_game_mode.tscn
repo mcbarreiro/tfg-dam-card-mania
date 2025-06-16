@@ -1,0 +1,317 @@
+[gd_scene load_steps=8 format=3 uid="uid://h4wc3jf3motv"]
+
+[ext_resource type="Texture2D" uid="uid://cdonf6uadfoy0" path="res://img/backgrounds/fondo.png" id="1_33bq7"]
+[ext_resource type="Script" uid="uid://4b4swavjblsa" path="res://scripts/control_deck.gd" id="2_8eqy5"]
+[ext_resource type="Script" uid="uid://8jww6nbiaypl" path="res://scripts/hand.gd" id="4_hxn4j"]
+[ext_resource type="PackedScene" uid="uid://5pxql4wbduqp" path="res://scenes/player_objects_panel.tscn" id="6_3mpmm"]
+[ext_resource type="Script" uid="uid://bfw7k1d8ox4ub" path="res://scripts/counter.gd" id="7_3mpmm"]
+[ext_resource type="Script" uid="uid://dnb1qh0wmrsro" path="res://scripts/gameplay_manager.gd" id="8_f8ul4"]
+[ext_resource type="Script" uid="uid://c0nq6tdyagknh" path="res://scripts/screens/end_screen_standard_game.gd" id="12_8eqy5"]
+
+[node name="StandardGame" type="Node2D"]
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 640.0
+offset_bottom = 360.0
+texture = ExtResource("1_33bq7")
+
+[node name="GameplayManager" type="Node" parent="."]
+script = ExtResource("8_f8ul4")
+
+[node name="TotalScore" type="PanelContainer" parent="."]
+offset_left = 527.0
+offset_top = 5.0
+offset_right = 635.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="TotalScore"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TotalScore/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label2" type="Label" parent="TotalScore/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "PUNTOS:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreCounter" type="Label" parent="TotalScore/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("7_3mpmm")
+metadata/_custom_type_script = "uid://bfw7k1d8ox4ub"
+
+[node name="UILayer" type="CanvasLayer" parent="." groups=["main_elements_group"]]
+
+[node name="CardPitPanel" type="Panel" parent="UILayer"]
+custom_minimum_size = Vector2(69, 75)
+offset_left = 310.0
+offset_top = 100.0
+offset_right = 625.0
+offset_bottom = 176.0
+
+[node name="SpecialCardsPanel" type="Panel" parent="UILayer"]
+custom_minimum_size = Vector2(69, 75)
+offset_left = 309.0
+offset_top = 184.0
+offset_right = 627.0
+offset_bottom = 259.0
+
+[node name="PlayerObjectsPanel" parent="UILayer" instance=ExtResource("6_3mpmm")]
+offset_left = -109.0
+offset_top = 34.0
+offset_right = -8.0
+offset_bottom = 272.0
+
+[node name="PlayerTurnButton" type="Button" parent="UILayer"]
+offset_left = 7.0
+offset_top = 322.0
+offset_right = 97.0
+offset_bottom = 353.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "ACABAR TURNO"
+
+[node name="DrawCardButton" type="Button" parent="UILayer"]
+offset_left = 5.0
+offset_top = 285.0
+offset_right = 108.0
+offset_bottom = 316.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "PEDIR CARTA"
+
+[node name="OptionsButton" type="Button" parent="UILayer"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "OPCIONES"
+
+[node name="TurnsLeft" type="PanelContainer" parent="UILayer"]
+offset_left = 527.0
+offset_top = 47.0
+offset_right = 635.0
+offset_bottom = 82.0
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayer/TurnsLeft"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/TurnsLeft/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label2" type="Label" parent="UILayer/TurnsLeft/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "TURNOS: "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="UILayer/TurnsLeft/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TargetScore" type="PanelContainer" parent="UILayer"]
+custom_minimum_size = Vector2(60, 40)
+offset_left = 238.0
+offset_top = 118.0
+offset_right = 298.0
+offset_bottom = 158.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/TargetScore"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="TargetScoreLabel" type="Label" parent="UILayer/TargetScore/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "0"
+horizontal_alignment = 1
+
+[node name="PlayerPlayValue" type="PanelContainer" parent="UILayer"]
+offset_left = 236.0
+offset_top = 280.0
+offset_right = 296.0
+offset_bottom = 320.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/PlayerPlayValue"]
+custom_minimum_size = Vector2(60, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="PlayerPlayValueLabel" type="Label" parent="UILayer/PlayerPlayValue/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "0"
+horizontal_alignment = 1
+
+[node name="GameplayElements" type="CanvasLayer" parent="." groups=["main_elements_group"]]
+
+[node name="PlayerHand" type="Control" parent="GameplayElements"]
+custom_minimum_size = Vector2(49, 65)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 288.0
+offset_top = 285.0
+offset_right = 606.0
+offset_bottom = 350.0
+script = ExtResource("4_hxn4j")
+
+[node name="SpecialCardsHand" type="Control" parent="GameplayElements"]
+custom_minimum_size = Vector2(49, 65)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 425.0
+offset_top = 189.0
+offset_right = 474.0
+offset_bottom = 254.0
+script = ExtResource("4_hxn4j")
+
+[node name="DealerCardsControl" type="Control" parent="GameplayElements"]
+custom_minimum_size = Vector2(49, 65)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 428.0
+offset_top = 105.0
+offset_right = 477.0
+offset_bottom = 170.0
+script = ExtResource("4_hxn4j")
+
+[node name="Deck" type="Control" parent="GameplayElements"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 655.0
+offset_top = 168.0
+offset_right = 695.0
+offset_bottom = 208.0
+script = ExtResource("2_8eqy5")
+metadata/_custom_type_script = "uid://4b4swavjblsa"
+
+[node name="OptionsScreenStandardGame" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("12_8eqy5")
+
+[node name="PanelContainer" type="PanelContainer" parent="OptionsScreenStandardGame"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -165.0
+offset_top = -188.0
+offset_right = 165.0
+offset_bottom = 188.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="OptionsScreenStandardGame/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 35
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 35
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsScreenStandardGame/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="OptionsScreenStandardGame/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Puntuación actual"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="OptionsScreenStandardGame/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="OptionsScreenStandardGame/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="OptionsScreenStandardGame/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Puntos totales ganados:"
+horizontal_alignment = 1
+
+[node name="CounterTotalScore" type="Label" parent="OptionsScreenStandardGame/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "0"
+horizontal_alignment = 1
+script = ExtResource("7_3mpmm")
+metadata/_custom_type_script = "uid://bfw7k1d8ox4ub"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="OptionsScreenStandardGame/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="OptionsScreenStandardGame/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Puntos por mano ganados:"
+horizontal_alignment = 1
+
+[node name="CounterPlayScore" type="Label" parent="OptionsScreenStandardGame/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "0"
+horizontal_alignment = 1
+script = ExtResource("7_3mpmm")
+metadata/_custom_type_script = "uid://bfw7k1d8ox4ub"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="OptionsScreenStandardGame/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="OptionsScreenStandardGame/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Puntos extra ganados:"
+horizontal_alignment = 1
+
+[node name="CounterSpecialCardsScore" type="Label" parent="OptionsScreenStandardGame/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "0"
+horizontal_alignment = 1
+script = ExtResource("7_3mpmm")
+metadata/_custom_type_script = "uid://bfw7k1d8ox4ub"
+
+[node name="HBoxContainer3" type="VBoxContainer" parent="OptionsScreenStandardGame/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SaveButton" type="Button" parent="OptionsScreenStandardGame/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Guardar partida"
+
+[node name="KeepPlayingButton" type="Button" parent="OptionsScreenStandardGame/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Seguir jugando"
+
+[node name="GamesMenuButton" type="Button" parent="OptionsScreenStandardGame/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Volver al menú"
+
+[connection signal="pressed" from="UILayer/OptionsButton" to="GameplayManager" method="_on_options_button_pressed"]
+[connection signal="pressed" from="OptionsScreenStandardGame/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/SaveButton" to="GameplayManager" method="_on_save_button_pressed"]
+[connection signal="pressed" from="OptionsScreenStandardGame/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/KeepPlayingButton" to="OptionsScreenStandardGame" method="_on_keep_playing_button_pressed"]
+[connection signal="pressed" from="OptionsScreenStandardGame/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/GamesMenuButton" to="OptionsScreenStandardGame" method="_on_games_menu_button_pressed"]

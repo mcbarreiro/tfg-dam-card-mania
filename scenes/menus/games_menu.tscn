@@ -1,0 +1,117 @@
+[gd_scene load_steps=4 format=3 uid="uid://chd7eg7eepmvx"]
+
+[ext_resource type="Script" uid="uid://8quk2t2nbhh3" path="res://scripts/menus/games_menu.gd" id="1_tkklf"]
+[ext_resource type="Theme" uid="uid://co6330l1n2l5e" path="res://themes/blue_button_theme.tres" id="2_k40fb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_21nil"]
+bg_color = Color(0, 0.658824, 0.882353, 1)
+
+[node name="GamesMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tkklf")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_21nil")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -181.0
+offset_top = -90.0
+offset_right = 181.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="SimpleGameButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "PARTIDA SIMPLE"
+
+[node name="StandardGameButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "PARTIDA ESTÁNDAR"
+
+[node name="Panel2" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 190.0
+offset_top = 55.0
+offset_right = -190.0
+offset_bottom = -55.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel2"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="Panel2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Elige una opción"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="NewGameButton" type="Button" parent="Panel2/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_k40fb")
+text = "NUEVA PARTIDA"
+
+[node name="LoadGameButton" type="Button" parent="Panel2/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_k40fb")
+text = "CARGAR PARTIDA"
+
+[node name="ExitButton" type="Button" parent="Panel2/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_k40fb")
+text = "SALIR"
+
+[node name="ExitGameButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 311.0
+offset_right = 354.0
+offset_bottom = 342.0
+size_flags_vertical = 3
+text = "SALIR"
+
+[connection signal="pressed" from="HBoxContainer/SimpleGameButton" to="." method="_on_simple_game_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/StandardGameButton" to="." method="_on_standard_game_button_pressed"]
+[connection signal="pressed" from="Panel2/MarginContainer/VBoxContainer/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="Panel2/MarginContainer/VBoxContainer/VBoxContainer/LoadGameButton" to="." method="_on_load_game_button_pressed"]
+[connection signal="pressed" from="Panel2/MarginContainer/VBoxContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="ExitGameButton" to="." method="_on_exit_game_button_pressed"]

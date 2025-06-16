@@ -1,0 +1,173 @@
+[gd_scene load_steps=9 format=3 uid="uid://b33u41bhtck1k"]
+
+[ext_resource type="Texture2D" uid="uid://cdonf6uadfoy0" path="res://img/backgrounds/fondo.png" id="1_hwy1w"]
+[ext_resource type="Script" uid="uid://c5cdxikl4trd1" path="res://scripts/slot_control.gd" id="2_esdkm"]
+[ext_resource type="Script" uid="uid://fj67bwe0d4yd" path="res://scripts/card_manager.gd" id="3_smxpe"]
+[ext_resource type="Script" uid="uid://4b4swavjblsa" path="res://scripts/control_deck.gd" id="4_4lt0a"]
+[ext_resource type="Texture2D" uid="uid://7w12ayh70b7i" path="res://img/cards/Poker Cards pack/Decks .png" id="5_or6qi"]
+[ext_resource type="Script" uid="uid://8jww6nbiaypl" path="res://scripts/hand.gd" id="6_xyk5q"]
+[ext_resource type="Script" uid="uid://c7deebdn77x0l" path="res://scripts/screens/end_screen_simple_game.gd" id="8_6j1u1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8cra5"]
+atlas = ExtResource("5_or6qi")
+region = Rect2(17, 15, 49, 65)
+
+[node name="SimpleGame" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="." groups=["game_group"]]
+z_index = -2
+position = Vector2(319, 180)
+texture = ExtResource("1_hwy1w")
+
+[node name="SlotControl" type="Control" parent="." groups=["game_group"]]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 347.0
+offset_top = 30.0
+offset_right = 396.0
+offset_bottom = 95.0
+script = ExtResource("2_esdkm")
+
+[node name="CardManager" type="Node2D" parent="." groups=["game_group"]]
+script = ExtResource("3_smxpe")
+
+[node name="ControlDeck" type="Control" parent="CardManager"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 259.0
+offset_top = 29.0
+offset_right = 308.0
+offset_bottom = 94.0
+script = ExtResource("4_4lt0a")
+
+[node name="TextureRect" type="TextureRect" parent="CardManager/ControlDeck"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_8cra5")
+
+[node name="ControlHand" type="Control" parent="CardManager"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 198.0
+offset_top = 233.0
+offset_right = 436.0
+offset_bottom = 271.0
+script = ExtResource("6_xyk5q")
+
+[node name="ButtonControl" type="Control" parent="." groups=["game_group"]]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 269.0
+offset_top = 316.0
+offset_right = 371.0
+offset_bottom = 360.0
+size_flags_horizontal = 4
+
+[node name="TurnButton" type="Button" parent="ButtonControl"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.0
+offset_top = -15.5
+offset_right = 45.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "ACABAR TURNO"
+
+[node name="ScoreControl" type="Control" parent="." groups=["game_group"]]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 575.0
+offset_top = 2.0
+offset_right = 638.0
+offset_bottom = 29.0
+
+[node name="PanelContainer" type="PanelContainer" parent="ScoreControl"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.5
+offset_top = -11.5
+offset_right = 30.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="ScoreControl/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "0"
+horizontal_alignment = 1
+
+[node name="EndScreenSimpleGame" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("8_6j1u1")
+
+[node name="ColorRect" type="ColorRect" parent="EndScreenSimpleGame"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(5.39064e-06, 0.75022, 0.922519, 1)
+
+[node name="PanelContainer" type="PanelContainer" parent="EndScreenSimpleGame"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -114.5
+offset_top = -111.0
+offset_right = 114.5
+offset_bottom = 111.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="EndScreenSimpleGame/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EndScreenSimpleGame/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="RichTextLabel" type="RichTextLabel" parent="EndScreenSimpleGame/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Fin de la partida
+
+Puntuación total"
+fit_content = true
+autowrap_mode = 0
+
+[node name="TotalScore" type="Label" parent="EndScreenSimpleGame/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "0"
+horizontal_alignment = 1
+
+[node name="GamesMenuButton" type="Button" parent="EndScreenSimpleGame/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Volver al menú"
+
+[node name="GamesMenuButton" type="Button" parent="."]
+offset_right = 89.0
+offset_bottom = 31.0
+text = "SALIR"

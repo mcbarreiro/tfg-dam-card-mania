@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3nu8so1psn52"]
+
+[ext_resource type="Script" uid="uid://ch0ihlmas0s6d" path="res://scenes/choosing_mod_panel.gd" id="1_bfmhv"]
+
+[node name="ChoosingModPanel" type="PanelContainer"]
+custom_minimum_size = Vector2(292, 162)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 174.0
+offset_top = 99.0
+offset_right = -174.0
+offset_bottom = -99.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bfmhv")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Elije un modificador"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "CONTINUAR"
+
+[connection signal="gui_input" from="MarginContainer/VBoxContainer/HBoxContainer" to="." method="_on_h_box_container_gui_input"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
