@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://dqrvynpvb67to"]
+
+[ext_resource type="Script" uid="uid://cqpl8rww0q32o" path="res://scripts/card_control.gd" id="1_dxcsh"]
+[ext_resource type="Texture2D" uid="uid://dao3j0y24qr5w" path="res://img/cards/Poker Cards pack/cards.png" id="2_xjs3c"]
+[ext_resource type="Texture2D" uid="uid://7w12ayh70b7i" path="res://img/cards/Poker Cards pack/Decks .png" id="3_8bnvs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hrpra"]
+atlas = ExtResource("2_xjs3c")
+region = Rect2(0, 0, 49, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4f3ie"]
+atlas = ExtResource("3_8bnvs")
+region = Rect2(17, 15, 49, 65)
+
+[node name="CardControl" type="MarginContainer"]
+offset_right = 49.0
+offset_bottom = 65.0
+script = ExtResource("1_dxcsh")
+
+[node name="Face" type="TextureRect" parent="."]
+visible = false
+texture_filter = 1
+layout_mode = 2
+texture = SubResource("AtlasTexture_hrpra")
+stretch_mode = 4
+
+[node name="Back" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 2
+texture = SubResource("AtlasTexture_4f3ie")
+stretch_mode = 4
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

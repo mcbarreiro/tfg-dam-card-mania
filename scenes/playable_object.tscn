@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://cguqkuo1ipgs2"]
+
+[ext_resource type="Script" uid="uid://dfpgya65b8w8q" path="res://scripts/playable_object.gd" id="1_c8c1d"]
+
+[node name="PlayableObject" type="Container"]
+texture_filter = 1
+custom_minimum_size = Vector2(60, 60)
+offset_right = 60.0
+offset_bottom = 60.0
+script = ExtResource("1_c8c1d")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+ignore_texture_size = true
+stretch_mode = 5
